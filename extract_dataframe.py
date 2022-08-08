@@ -45,12 +45,12 @@ class TweetDfExtractor:
             # according to tweepy, if a text is truncated the 'text' attribute will be replaced by 'full_text' attribute
             try:
                 full_text.append(tweet['full_text'])
-            except KeyError:
+            except :
                 try:
                     full_text.append(tweet['text'])
-                except KeyError:
+                except :
                     full_text.append('')
-    
+        return full_text
     def find_sentiments(self, text)->list:
         polarity, subjectivity = [], []
         for tweet in text:
@@ -87,10 +87,13 @@ class TweetDfExtractor:
         return friends_count
 
     def is_sensitive(self)->list:
-        try:
-            is_sensitive = [tweet['possibly_sensitive'] for tweet in self.tweets_list]
-        except KeyError:
-            is_sensitive = None
+        is_sensitive=[]
+        
+        for tweet in self.tweets_list:
+            try:
+                is_sensitive.append(tweet['possibly_sensitive'])
+            except KeyError:
+                is_sensitive.append(None)
 
         return is_sensitive
 
@@ -111,8 +114,13 @@ class TweetDfExtractor:
         return hashtags
 
     def find_mentions(self)->list:
-        mentions = [tweet['entities']['user_mentions']['name'] for tweet in self.tweets_list]
-        
+        mentions_name=[]
+        mentions = [tweet['entities']['user_mentions'] for tweet in self.tweets_list]
+        for mention in mentions:
+            if len(mention)>0:
+                mentions_name.append(mention['name'])
+       
+        #mentions = [mention['name'] if len(mention)>0 else '' for mention in mentions]
         return mentions
 
 
@@ -162,7 +170,7 @@ if __name__ == "__main__":
     # required column to be generated you should be creative and add more features
     columns = ['created_at', 'source', 'original_text','clean_text', 'sentiment','polarity','subjectivity', 'lang', 'favorite_count', 'retweet_count', 
     'original_author', 'screen_count', 'followers_count','friends_count','possibly_sensitive', 'hashtags', 'user_mentions', 'place', 'place_coord_boundaries']
-    _, tweet_list = read_json("../covid19.json")
+    _, tweet_list = read_json("./data/africa_twitter_data.json")
     tweet = TweetDfExtractor(tweet_list)
     tweet_df = tweet.get_tweet_df() 
 
