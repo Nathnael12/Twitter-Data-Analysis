@@ -118,7 +118,7 @@ class TweetDfExtractor:
         mentions = [tweet['entities']['user_mentions'] for tweet in self.tweets_list]
         for mention in mentions:
             if len(mention)>0:
-                mentions_name.append(mention['name'])
+                mentions_name.append(mention['mentions_name'])
        
         #mentions = [mention['name'] if len(mention)>0 else '' for mention in mentions]
         return mentions_name
@@ -172,6 +172,6 @@ if __name__ == "__main__":
     'original_author', 'screen_count', 'followers_count','friends_count','possibly_sensitive', 'hashtags', 'user_mentions', 'place', 'place_coord_boundaries']
     _, tweet_list = read_json("./data/africa_twitter_data.json")
     tweet = TweetDfExtractor(tweet_list)
-    tweet_df = tweet.get_tweet_df() 
+    tweet_df = tweet.get_tweet_df(save=True) 
 
     # use all defined functions to generate a dataframe with the specified columns above
