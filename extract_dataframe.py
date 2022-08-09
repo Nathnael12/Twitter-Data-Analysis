@@ -117,8 +117,8 @@ class TweetDfExtractor:
         mentions_name=[]
         mentions = [tweet['entities']['user_mentions'] for tweet in self.tweets_list]
         for mention in mentions:
-            if len(mention)>0:
-                mentions_name.append(mention['mentions_name'])
+            for user_mention in mention:
+                mentions_name.append(user_mention['name'])
        
         #mentions = [mention['name'] if len(mention)>0 else '' for mention in mentions]
         return mentions_name
