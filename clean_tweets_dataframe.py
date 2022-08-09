@@ -47,7 +47,9 @@ class Clean_Tweets:
         """
         remove non english tweets from lang
         """
+        # unwanted_rows = df[df['lang'] != 'en' ].index
+        # df.drop(df[df['lang'] != 'en' ].index , inplace=True)
         
-        df = df.drop(df[df['lang']!="en"].index,inplace=True)
+        df = df.drop(df[df['lang']!="en"].index)
         
         return df
