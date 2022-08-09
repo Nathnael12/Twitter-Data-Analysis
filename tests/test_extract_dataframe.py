@@ -114,8 +114,13 @@ class TestTweetDfExtractor(unittest.TestCase):
         self.assertEqual(self.df.is_sensitive(), [
                          None, False, False, False, False])
 
-    # def test_find_hashtags(self):
-    #     self.assertEqual(self.df.find_hashtags(), )
+    def test_find_hashtags(self):
+        hashtags=[['Pelosi', 'Taiwan', 'NATO', '5G'],
+        ['Pelosi', 'マツコの知らない世界', 'Yediiklim', 'BadDecisionsTrailer1', 'LawnBowls', '祝_CALL119_MV900万回', 'มากอดกันนะซีพฤกษ์'],
+        ['Pelosi', 'Taipei', 'taiwan', 'XiJinping', 'China'],
+        ['HOBIPALOOZA', 'LaAcademiaExpulsion', 'WEURO2022', 'jhopeAtLollapalooza', 'SuzukiPakistan', 'Fantastico', 'Taiwan', 'breastfeeding', 'Kosovo', 'BORNPINK'],
+        ['Pelosi', 'china']]
+        self.assertEqual(self.df.find_hashtags(),hashtags)
 
     # def test_find_mentions(self):
     #     self.assertEqual(self.df.find_mentions(), )
