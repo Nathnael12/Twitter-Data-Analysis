@@ -122,8 +122,8 @@ class TestTweetDfExtractor(unittest.TestCase):
         ['Pelosi', 'china']]
         self.assertEqual(self.df.find_hashtags(),hashtags)
 
-    # def test_find_mentions(self):
-    #     self.assertEqual(self.df.find_mentions(), )
+    def test_find_mentions(self):
+         self.assertEqual(self.df.find_mentions(), None)
 
 
 if __name__ == "__main__":
