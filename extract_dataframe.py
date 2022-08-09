@@ -121,7 +121,7 @@ class TweetDfExtractor:
                 mentions_name.append(mention['name'])
        
         #mentions = [mention['name'] if len(mention)>0 else '' for mention in mentions]
-        return mentions
+        return mentions_name
 
 
     def find_location(self)->list:
