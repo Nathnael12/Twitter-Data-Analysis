@@ -125,12 +125,13 @@ class TweetDfExtractor:
 
 
     def find_location(self)->list:
+        locations=[]
         try:
-            location = self.tweets_list['user']['location']
+            locations.append(self.tweets_list['user']['location'])
         except TypeError:
-            location = ''
+            locations.append('')
         
-        return location
+        return locations
     
     def find_lang(self)->list:
         lang = [tweet['lang'] for tweet in self.tweets_list]
