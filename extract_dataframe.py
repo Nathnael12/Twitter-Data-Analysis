@@ -2,7 +2,6 @@ import json
 import pandas as pd
 from textblob import TextBlob
 
-
 def read_json(json_file: str)->list:
     """
     json file reader to open and read json files into a list
