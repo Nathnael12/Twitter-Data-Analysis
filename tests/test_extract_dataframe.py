@@ -58,8 +58,6 @@ columns = [
     "place",
     "place_coord_boundaries",
 ]
-
-
 class TestTweetDfExtractor(unittest.TestCase):
     """
                 A class for unit-testing function in the fix_clean_tweets_dataframe.py file
